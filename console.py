@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from models import *
+from models.base_model import *
 import cmd
 
 

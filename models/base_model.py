@@ -1,6 +1,5 @@
 #!usr/bin/python3
 """Class Base Model"""
-from turtle import update
 import uuid
 from datetime import datetime
 import models

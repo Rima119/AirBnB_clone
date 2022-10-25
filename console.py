@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-from models.base_model import *
+from models.base_model import BaseModel
+from models import storage
 import cmd
 
 
@@ -76,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
         if args not in HBNBCommand.classes and len(args) != 0:
             print("** class doesn't exist **")
         else:
-            args = arg.split()
+            args = args.split()
             instance_list = []
             for key, value in storage.all().items():
                 object_name = value.__class__.__name__

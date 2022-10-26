@@ -29,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         elif args not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
-            instance = eval[args]()
+            instance = eval(args)()
             instance.save()
             print(instance.id)
 
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
         if args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        if args[0] in classes:
+        if args[0] in HBNBCommand.classes:
             if len(args) == 1:
                 print("** instance id missing **")
                 return

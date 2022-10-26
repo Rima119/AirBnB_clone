@@ -25,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
-    def do_emptyline(self):
+    def emptyline(self):
         """empty line"""
         pass
 

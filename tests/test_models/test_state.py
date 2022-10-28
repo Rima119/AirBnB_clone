@@ -27,8 +27,8 @@ class TestState(unittest.TestCase):
         """tests if the type of the attribute is right"""
         self.assertIsInstance(self.s.name, str)
         self.assertIsInstance(self.s.id, str)
-        self.assertIsInstance(self.u.created_at, datetime)
-        self.assertIsInstance(self.u.updated_at, datetime)
+        self.assertIsInstance(self.s.created_at, datetime)
+        self.assertIsInstance(self.s.updated_at, datetime)
 
     def test_two_states_unique_ids(self):
         """test if two states id are unique"""
@@ -38,7 +38,8 @@ class TestState(unittest.TestCase):
 
     def test_save(self):
         """test save"""
-        f_update = s.updated_at
+        s = State()
+        f_updated_at = s.updated_at
         s.save()
         self.assertLess(f_updated_at, s.updated_at)
 

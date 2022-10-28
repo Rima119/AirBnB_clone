@@ -45,7 +45,8 @@ class UserCase(unittest.TestCase):
 
     def test_save(self):
         """test save"""
-        f_update = u.updated_at
+        u = User()
+        f_updated_at = u.updated_at
         u.save()
         self.assertLess(f_updated_at, u.updated_at)
 

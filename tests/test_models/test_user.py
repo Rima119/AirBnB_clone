@@ -17,15 +17,15 @@ class UserCase(unittest.TestCase):
         """test if User is a subclass of BaseModel"""
         self.assertIsInstance(self.u, User)
 
-     def test_attributes_exist(self):
-         """test if attributes exist"""
-         self.assertTrue(hasattr(self.u, 'email'))
-         self.assertTrue(hasattr(self.u, 'password'))
-         self.assertTrue(hasattr(self.u, 'first_name'))
-         self.assertTrue(hasattr(self.u, 'last_name'))
-         self.assertTrue(hasattr(self.u, 'id'))
-         self.assertTrue(hasattr(self.u, 'created_at'))
-         self.assertTrue(hasattr(self.u, 'updated_at'))
+    def test_attributes_exist(self):
+        """test if attributes exist"""
+        self.assertTrue(hasattr(self.u, 'email'))
+        self.assertTrue(hasattr(self.u, 'password'))
+        self.assertTrue(hasattr(self.u, 'first_name'))
+        self.assertTrue(hasattr(self.u, 'last_name'))
+        self.assertTrue(hasattr(self.u, 'id'))
+        self.assertTrue(hasattr(self.u, 'created_at'))
+        self.assertTrue(hasattr(self.u, 'updated_at'))
 
     def test_attributes_types(self):
         """tests if the type of the attribute is right"""

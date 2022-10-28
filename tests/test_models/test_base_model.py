@@ -25,13 +25,13 @@ class TestBaseModel_instantiation(unittest.TestCase):
     def test_id_is_public_str(self):
         self.assertEqual(str, type(BaseModel().id))
 
-    def test_created_at_is_public_datetime(self):
+    def test_created_at_is_datetime(self):
         self.assertEqual(datetime, type(BaseModel().created_at))
 
-    def test_updated_at_is_public_datetime(self):
+    def test_updated_at_is_datetime(self):
         self.assertEqual(datetime, type(BaseModel().updated_at))
 
-    def test_two_models_unique_ids(self):
+    def test_models_unique_ids(self):
         bm1 = BaseModel()
         bm2 = BaseModel()
         self.assertNotEqual(bm1.id, bm2.id)
@@ -60,7 +60,7 @@ class TestBaseModel_instantiation(unittest.TestCase):
         self.assertIn("'created_at': " + dt_repr, bmstr)
         self.assertIn("'updated_at': " + dt_repr, bmstr)
 
-    def test_args_unused(self):
+    def test_instanciation_with_None(self):
         bm = BaseModel(None)
         self.assertNotIn(None, bm.__dict__.values())
 
@@ -153,7 +153,7 @@ class TestBaseModel_to_dict(unittest.TestCase):
 
     def test_to_dict_contains_added_attributes(self):
         bm = BaseModel()
-        bm.name = "Holberton"
+        bm.name = "Alx"
         bm.my_number = 98
         self.assertIn("name", bm.to_dict())
         self.assertIn("my_number", bm.to_dict())

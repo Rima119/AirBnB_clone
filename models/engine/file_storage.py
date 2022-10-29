@@ -9,6 +9,15 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+classes = {
+        'BaseModel': BaseModel,
+        'User': User,
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Review': Review
+        }
 
 
 class FileStorage:
@@ -23,7 +32,7 @@ class FileStorage:
     all():
     new(obj):
     save():
-    reload(): """
+    reload():"""
     __file_path = "file.json"
     __objects = {}
 
@@ -50,10 +59,7 @@ class FileStorage:
         (only if the JSON file (__file_path) exists;
         otherwise, do nothing. If the file doesnt exist,
         no exception should be raised) """
-        if not os.path.isfile(FileStorage.__file_path):
-            pass
-        else:
-            with open(FileStorage.__file_path, 'r', encoding='utf-8') as f:
-                for key, value in (json.load(f)).items():
-                    value = eval(value["__class__"])(**value)
-                    self.__objects[key] = value
+        if os.path.exists(FileStorage.__file_path) is True:
+            with open(FileStorage.__file_path, 'r') as f:
+                for key, value in json.load(f).items():
+                    self.new(classes[value['__class__']](**value)

@@ -32,7 +32,8 @@ class HBNBCommand(cmd.Cmd):
             "all": self.do_all,
             "show": self.do_show,
             "destroy": self.do_destroy,
-            "update": self.do_update
+            "update": self.do_update,
+            "count": self.do_count
         }
         match = arg.split(".")
         if len(match) > 1:
@@ -143,6 +144,15 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
         else:
             print("** class doesn't exist **")
+
+    def do_count(self, args):
+        """retrieve the number of instances of a class"""
+        a = 0
+        args = args.split()
+        for obj in storage.all().values():
+            if args[0] == obj.__class__.__name__:
+                a = a + 1
+        print(a)
 
 
 if __name__ == '__main__':

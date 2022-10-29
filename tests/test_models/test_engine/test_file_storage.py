@@ -45,6 +45,15 @@ class TestFileStorage(unittest.TestCase):
         fail = "FileStorage() takes no arguments"
         self.assertEqual(str(error.exception), fail)
 
+    def test_file_storage_doc(self):
+        """ Check the documentation """
+        self.assertIsNotNone(FileStorage.__doc__)
+        self.assertIsNotNone(FileStorage.__init__.__doc__)
+        self.assertIsNotNone(FileStorage.all.__doc__)
+        self.assertIsNotNone(FileStorage.new.__doc__)
+        self.assertIsNotNone(FileStorage.save.__doc__)
+        self.assertIsNotNone(FileStorage.reload.__doc__)
+
     def test_attributes(self):
         """Test class attributes"""
         self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))

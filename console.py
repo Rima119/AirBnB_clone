@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Console Module"""
+from numpy import mat
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -9,6 +10,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models import storage
 import cmd
+import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -23,6 +25,26 @@ class HBNBCommand(cmd.Cmd):
             'Amenity': Amenity,
             'Review': Review
             }
+
+    def default(self, arg):
+        """"""
+        args_dic = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "update": self.do_update
+        }
+        match = arg.split(".")
+        if len(match) > 1:
+            command = match[1].split("(")
+            if command[0] in args_dic.keys():
+                com_arg = command[1].split(")")[0]
+                if com_arg != "":
+                    com_arg = com_arg.split("\"")[1]
+                call = "{} {}".format(match[0], com_arg)
+                return args_dic[command[0]](call)
+        print("Unknown syntax: {}".format(arg))
+        return False
 
     def do_quit(self, arg):
         """exit the program"""

@@ -45,19 +45,19 @@ class TestFileStorage(unittest.TestCase):
         fail = "FileStorage() takes no arguments"
         self.assertEqual(str(error.exception), fail)
 
-    def test_file_storage_doc(self):
-        """ Check the documentation """
-        self.assertIsNotNone(FileStorage.__doc__)
-        self.assertIsNotNone(FileStorage.__init__.__doc__)
-        self.assertIsNotNone(FileStorage.all.__doc__)
-        self.assertIsNotNone(FileStorage.new.__doc__)
-        self.assertIsNotNone(FileStorage.save.__doc__)
-        self.assertIsNotNone(FileStorage.reload.__doc__)
-
     def test_attributes(self):
         """Test class attributes"""
         self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
         self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
+        st = FileStorage()
+        with self.assertRaises(AttributeError) as error:
+            st.__file_path
+        fail = "'FileStorage' object has no attribute '_TestFileStorage__file_path'"
+        self.assertEqual(str(error.exception), fail)
+        with self.assertRaises(AttributeError) as error:
+            st.__objects
+        fail = "'FileStorage' object has no attribute '_TestFileStorage__objects'"
+        self.assertEqual(str(error.exception), fail)
         self.assertIsInstance(models.storage._FileStorage__objects, dict)
         self.assertIsInstance(models.storage._FileStorage__file_path, str)
 

@@ -11,6 +11,17 @@ from models.place import Place
 from models.review import Review
 
 
+classes = {
+        'BaseModel': BaseModel,
+        'User': User,
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Review': Review
+        }
+
+
 class FileStorage:
     """ serializes instances to a JSON file and deserializes JSON file
     to instances.
@@ -46,15 +57,6 @@ class FileStorage:
 
     def reload(self):
         """ deserializes the JSON file to __object"""
-        classes = 
-                'BaseModel': BaseModel,
-                'User': User,
-                'Place': Place,
-                'State': State,
-                'City': City,
-                'Amenity': Amenity,
-                'Review': Review
-                }
         if os.path.exists(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, 'r') as f:
                 for key, value in json.load(f).items():

@@ -9,15 +9,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-classes = {
-        'BaseModel': BaseModel,
-        'User': User,
-        'Place': Place,
-        'State': State,
-        'City': City,
-        'Amenity': Amenity,
-        'Review': Review
-        }
 
 
 class FileStorage:
@@ -55,11 +46,17 @@ class FileStorage:
             json.dump(lp, file)
 
     def reload(self):
-        """ deserializes the JSON file to __objects
-        (only if the JSON file (__file_path) exists;
-        otherwise, do nothing. If the file doesnt exist,
-        no exception should be raised) """
+        """ deserializes the JSON file to __object"""
+        classes = {
+                'BaseModel': BaseModel,
+                'User': User,
+                'Place': Place,
+                'State': State,
+                'City': City,
+                'Amenity': Amenity,
+                'Review': Review
+                }
         if os.path.exists(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, 'r') as f:
                 for key, value in json.load(f).items():
-                    self.new(classes[value['__class__']](**value)
+                    self.new(classes[value['__class__']](**value))

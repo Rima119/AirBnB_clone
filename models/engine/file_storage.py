@@ -32,7 +32,7 @@ class FileStorage:
     all():
     new(obj):
     save():
-    reload(): """
+    reload():"""
     __file_path = "file.json"
     __objects = {}
 
@@ -55,10 +55,23 @@ class FileStorage:
             json.dump(lp, file)
 
     def reload(self):
+<<<<<<< HEAD
         """ deserializes the JSON file to __objects
         (only if the JSON file (__file_path) exists;
         otherwise, do nothing. If the file doesnt exist,
         no exception should be raised) """
+=======
+        """ deserializes the JSON file to __object"""
+        classes = {
+                'BaseModel': BaseModel,
+                'User': User,
+                'Place': Place,
+                'State': State,
+                'City': City,
+                'Amenity': Amenity,
+                'Review': Review
+                }
+>>>>>>> 26fcbcc43b23c187403079e40ca7ecb751071e2f
         if os.path.exists(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, 'r') as f:
                 for key, value in json.load(f).items():

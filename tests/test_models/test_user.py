@@ -52,5 +52,6 @@ class UserCase(unittest.TestCase):
         u.save()
         self.assertLess(f_updated_at, u.updated_at)
 
+
 if __name__ == "__main__":
     unittest.main()

@@ -46,5 +46,6 @@ class TestState(unittest.TestCase):
         a.save()
         self.assertLess(f_updated_at, a.updated_at)
 
+
 if __name__ == "__main__":
     unittest.main()

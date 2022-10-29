@@ -57,7 +57,7 @@ class TestPlace(unittest.TestCase):
         p1 = Place()
         p2 = Place()
         self.assertNotEqual(p1.id, p2.id)
-    
+
     def test_save(self):
         """test save"""
         p = Place()
@@ -65,6 +65,7 @@ class TestPlace(unittest.TestCase):
         f_updated_at = p.updated_at
         p.save()
         self.assertLess(f_updated_at, p.updated_at)
+
 
 if __name__ == '__main__':
     unittest.main()

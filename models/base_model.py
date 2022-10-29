@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel:
     """
     BaseModel that defines all common attributes/methods for other classes
@@ -27,7 +28,7 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     setattr(self, key,
-                    datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")) 
+                            datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 elif key == "__class__":
                     setattr(self, key, type(self))
                 else:
@@ -43,11 +44,11 @@ class BaseModel:
         __str__ method should print: [<class name>] (<self.id>) <self.__dict__>
         """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
-    
+
     def save(self):
         self.updated_at = datetime.now()
         models.storage.save()
-    
+
     def to_dict(self):
         """
         This method will be the first piece of the serialization/

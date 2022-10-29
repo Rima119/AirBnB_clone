@@ -48,5 +48,6 @@ class TestCity(unittest.TestCase):
         c.save()
         self.assertLess(f_updated_at, c.updated_at)
 
+
 if __name__ == "__main__":
     unittest.main()

@@ -52,11 +52,13 @@ class TestFileStorage(unittest.TestCase):
         st = FileStorage()
         with self.assertRaises(AttributeError) as error:
             st.__file_path
-        fail = "'FileStorage' object has no attribute '_TestFileStorage__file_path'"
+        fail = "'FileStorage' object has no
+        attribute '_TestFileStorage__file_path'"
         self.assertEqual(str(error.exception), fail)
         with self.assertRaises(AttributeError) as error:
             st.__objects
-        fail = "'FileStorage' object has no attribute '_TestFileStorage__objects'"
+        fail = "'FileStorage' object has no
+        attribute '_TestFileStorage__objects'"
         self.assertEqual(str(error.exception), fail)
         self.assertIsInstance(models.storage._FileStorage__objects, dict)
         self.assertIsInstance(models.storage._FileStorage__file_path, str)
@@ -117,6 +119,7 @@ class TestFileStorage(unittest.TestCase):
         storage.new(user)
         key = user.__class__.__name__ + "." + str(user.id)
         self.assertIsNotNone(obj[key])
+
 
 if __name__ == '__main__':
     unittest.main()

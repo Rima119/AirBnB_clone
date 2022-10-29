@@ -3,6 +3,8 @@
 import unittest
 from models.state import State
 from datetime import datetime
+from time import sleep
+
 
 class TestState(unittest.TestCase):
     """Unittests for testing State Class"""
@@ -39,6 +41,7 @@ class TestState(unittest.TestCase):
     def test_save(self):
         """test save"""
         s = State()
+        sleep(0.05)
         f_updated_at = s.updated_at
         s.save()
         self.assertLess(f_updated_at, s.updated_at)

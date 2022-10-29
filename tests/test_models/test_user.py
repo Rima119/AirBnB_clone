@@ -3,6 +3,7 @@
 import unittest
 from models.user import User
 from datetime import datetime
+from time import sleep
 
 
 class UserCase(unittest.TestCase):
@@ -46,6 +47,7 @@ class UserCase(unittest.TestCase):
     def test_save(self):
         """test save"""
         u = User()
+        sleep(0.05)
         f_updated_at = u.updated_at
         u.save()
         self.assertLess(f_updated_at, u.updated_at)

@@ -3,6 +3,7 @@
 import unittest
 from models.city import City
 from datetime import datetime
+from time import sleep
 
 
 class TestCity(unittest.TestCase):
@@ -42,6 +43,7 @@ class TestCity(unittest.TestCase):
     def test_save(self):
         """test save"""
         c = City()
+        sleep(0.05)
         f_updated_at = c.updated_at
         c.save()
         self.assertLess(f_updated_at, c.updated_at)

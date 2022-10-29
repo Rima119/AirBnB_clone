@@ -3,6 +3,7 @@
 import unittest
 from models.place import Place
 from datetime import datetime
+from time import sleep
 
 
 class TestPlace(unittest.TestCase):
@@ -60,6 +61,7 @@ class TestPlace(unittest.TestCase):
     def test_save(self):
         """test save"""
         p = Place()
+        sleep(0.05)
         f_updated_at = p.updated_at
         p.save()
         self.assertLess(f_updated_at, p.updated_at)

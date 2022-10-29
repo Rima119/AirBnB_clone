@@ -69,6 +69,7 @@ class TestFileStorage(unittest.TestCase):
         """Test the all method"""
         st = FileStorage()
         objs = st.all()
+        self.assertIsNotNone(objs)
         self.assertIsInstance(objs, dict)
         self.assertFalse(objs == {})
 
@@ -108,13 +109,14 @@ class TestFileStorage(unittest.TestCase):
 
     def test_new(self):
         """ Test the new method"""
-        test_1 = BaseModel()
-        test_1.name = "Alx"
-        test_2 = BaseModel()
-        test_2.name = "Alx"
-        id_tests_1 = test_1.id
-        id_tests_2 = test_2.id
-        self.assertFalse(id_tests_1 == id_tests_2)
+        storage = FileStorage()
+        obj = storage.all()
+        user = User()
+        user.id = "12345"
+        user.name = "Kolo"
+        storage.new(user)
+        key = user.__class__.__name__ + "." + str(user.id)
+        self.assertIsNotNone(obj[key])
 
 if __name__ == '__main__':
     unittest.main()

@@ -12,14 +12,16 @@ from models.review import Review
 
 
 classes = {
-                'BaseModel': BaseModel,
-                'User': User,
-                'Place': Place,
-                'State': State,
-                'City': City,
-                'Amenity': Amenity,
-                'Review': Review
-                }
+        'BaseModel': BaseModel,
+        'User': User,
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Review': Review
+        }
+
+
 class FileStorage:
     """ serializes instances to a JSON file and deserializes JSON file
     to instances.
@@ -43,9 +45,8 @@ class FileStorage:
     def new(self, obj):
         """ sets in __objects the obj with
         key <obj class name>.id """
-        if obj:
-            obj_key = f"{type(obj).__name__}.{obj.id}"
-            FileStorage.__objects[obj_key] = obj
+        key_obj = obj.__class__.__name__ + "." + obj.id
+        FileStorage.__objects[key_obj] = obj
 
     def save(self):
         """ serializes __objects to the JSON file

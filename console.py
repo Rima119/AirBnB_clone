@@ -36,9 +36,30 @@ class HBNBCommand(cmd.Cmd):
             "count": self.do_count
         }
         match = arg.split(".")
+        match[1] = ".".join(match[1:])
         if len(match) > 1:
             command = match[1].split("(")
             if command[0] in args_dic.keys():
+                if command[0] == "update":
+                    cg = str(command[1].strip(" ").split(")")[0]).split(",")
+                    j = 0
+                    if "{" not in command[1]:
+                        for i in cg:
+                            if "\"" in i and j != len(i):
+                                cg[j] = i.split("\"")[1]
+                            j += 1
+                        call ="{} {}".format(match[0], " ".join(cg))
+                        return args_dic[command[0]](call)
+                    else:
+                        while j < len(cg):
+                            cg[j] = cg[j].replace("\"", "").replace(" ", ""
+                            ).replace("'", "").replace("{", "").replace("}","")
+                            j += 1
+                        for i in cg[1:]:
+                            call = "{} {}".format(match[0], cg[0] + " " +
+                            " ".join(i.split(":")))
+                            args_dic[command[0]](call)
+                        return 0
                 com_arg = command[1].split(")")[0]
                 if com_arg != "":
                     com_arg = com_arg.split("\"")[1]
@@ -131,7 +152,17 @@ class HBNBCommand(cmd.Cmd):
                 key = args[0] + '.' + args[1]
                 if key in storage.all():
                     if len(args) > 2:
+                        if "{" in args[2]:
+                            print(args[2])
                         if len(args) > 3:
+                            lp = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+                            j = 1
+                            for i in args[3]:
+                                if i not in lp:
+                                    j = 0
+                                    break
+                            if j:
+                                    args[3] = int(args[3])
                             setattr(storage.all()[key], args[2], args[3])
                             storage.all()[key].save()
                         else:

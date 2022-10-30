@@ -48,16 +48,17 @@ class HBNBCommand(cmd.Cmd):
                             if "\"" in i and j != len(i):
                                 cg[j] = i.split("\"")[1]
                             j += 1
-                        call ="{} {}".format(match[0], " ".join(cg))
+                        call = "{} {}".format(match[0], " ".join(cg))
                         return args_dic[command[0]](call)
                     else:
                         while j < len(cg):
-                            cg[j] = cg[j].replace("\"", "").replace(" ", ""
-                            ).replace("'", "").replace("{", "").replace("}","")
+                            cg[j] = cg[j].replace("\"", "").replace(" ", "").\
+                                    replace("'", "").replace("{", "").\
+                                    replace("}", "")
                             j += 1
                         for i in cg[1:]:
                             call = "{} {}".format(match[0], cg[0] + " " +
-                            " ".join(i.split(":")))
+                                                  " ".join(i.split(":")))
                             args_dic[command[0]](call)
                         return 0
                 com_arg = command[1].split(")")[0]
@@ -162,7 +163,7 @@ class HBNBCommand(cmd.Cmd):
                                     j = 0
                                     break
                             if j:
-                                    args[3] = int(args[3])
+                                args[3] = int(args[3])
                             setattr(storage.all()[key], args[2], args[3])
                             storage.all()[key].save()
                         else:

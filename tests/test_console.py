@@ -96,9 +96,7 @@ class TestHBNBCommand(unittest.TestCase):
 
     def test_help(self):
         """help test"""
-        h = ("Documented commands (type help <topic>):\n"
-            "========================================\n"
-            "EOF  all  count  create  destroy  help  quit  show  update")
+        h = ("Documented commands (type help <topi)\n")
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("help"))
             self.assertEqual(h, f.getvalue().strip())

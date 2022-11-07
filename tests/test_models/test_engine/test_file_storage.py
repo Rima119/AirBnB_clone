@@ -72,17 +72,17 @@ class FileStorageTests(unittest.TestCase):
 
     def test_reload(self):
         """Test the reload method"""
-        test_1 = BaseModel()
-        test_1.save()
-        test_1.name = "Alx"
-        test_1.number = 1
-        test_1.save()
-        self.assertTrue(os.path.exists("file.json"))
-        dic = {}
-        with open('file.json', 'r') as fjson:
-            dic = json.loads(fjson.read())
-        test_1_key = test_1.__class__.__name__ + '.' + test_1.id
-        self.assertDictEqual(test_1.to_dict(), dic[test_1_key])
+        with self.assertRaises(TypeError):
+            storage.reload(None)
+        if os.path.exists("file.json"):
+            os.remove("file.json")
+        self.file_sto.save()
+        self.file_sto.reload()
+        all_objs = storage.all()
+        for obj_id in all_objs.keys():
+            obj = all_objs[obj_id]
+            self.assertTrue(isinstance(obj, BaseModel))
+        os.remove("file.json")
 
     def test_new(self):
         """ Test the new method"""

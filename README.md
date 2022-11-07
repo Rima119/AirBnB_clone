@@ -15,7 +15,7 @@ An API that provides a communication interface between the front-end and your da
 
 # Concepts to learn from doing this project
 
-Unittest - and please work all together on tests cases.
+Unittest - we work all together on test cases
 
 Python packages
 
